@@ -1,0 +1,5 @@
+# ORACLE DB PROFILE CONNECTION
+
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=

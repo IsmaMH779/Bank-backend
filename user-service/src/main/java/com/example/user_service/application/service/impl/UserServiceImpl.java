@@ -31,10 +31,14 @@ public class UserServiceImpl implements UserService {
     public void newUser(UserRegistrationDTO userReg) {
 
         userRepository.findByEmail(userReg.email())
-                .ifPresent(user -> new ObjectNotFoundException("User already exists with this email: " + user.getEmail()));
+                .ifPresent(user -> {
+                    throw new ObjectNotFoundException("User already exists with this email: " + user.getEmail());
+                });
 
         userRepository.findByUsername(userReg.username())
-                .ifPresent(user -> new ObjectNotFoundException("User already exists with this username: " + user.getUsername()));
+                .ifPresent(user -> {
+                    throw new ObjectNotFoundException("User already exists with this username: " + user.getUsername());
+                });
 
         User newUser = User.builder()
                 .username(userReg.username())
